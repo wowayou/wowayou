@@ -11,7 +11,7 @@ I build practical growth systems for B2B and cross-border websites: **SEO strate
 I work at the intersection of search visibility and implementation—turning audits into repeatable workflows, measurable content systems, and maintainable web products. My notes and project write-ups live at [eigentime.org](https://eigentime.org).
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=wowayou&show_icons=true&hide_title=true&hide_border=true&theme=transparent&rank_icon=github" alt="GitHub activity" width="62%" />
+  <img src="github-metrics.svg" alt="GitHub activity" width="65%" />
 </p>
 
 ## What I'm working on
