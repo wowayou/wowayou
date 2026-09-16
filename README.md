@@ -1,26 +1,36 @@
 # CG / wowayou
 
-中文为主，英文内容会在需要时补充。
+<p>
+  <img src="https://komarev.com/ghpvc/?username=wowayou&color=0e75b6&style=flat" alt="Profile views" />
+</p>
 
-我在 [eigentime.org](https://eigentime.org) 记录工程实践、B2B SEO、英文网站交付、AI 工作流，以及本地优先的小工具和 Web 应用。
+### Hi, I'm CG 👋
 
-## 目前在做
+I build practical growth systems for B2B and cross-border websites: **SEO strategy, English content, site operations, and small automation tools**.
 
-- B2B SEO 与英文网站交付
-- AI Agent 工作流与开发协作
-- 本地优先、零依赖的小工具和 Web 应用
-- 把项目过程、证据和复盘写进博客
+I work at the intersection of search visibility and implementation—turning audits into repeatable workflows, measurable content systems, and maintainable web products. My notes and project write-ups live at [eigentime.org](https://eigentime.org).
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=wowayou&show_icons=true&hide_title=true&hide_border=true&theme=transparent&rank_icon=github" alt="GitHub activity" width="62%" />
+</p>
+
+## What I'm working on
+
+- Technical and content SEO for English and B2B websites
+- Local-first tools that reduce repetitive website and job-search work
+- AI-assisted workflows with clear human review and evidence
 
 ## Selected work
 
-- [Time Logger](https://github.com/wowayou/time-logger) — 本地优先的时间记录与 Markdown 摘要工具
-- [SEO Monitor](https://github.com/wowayou/seo-monitor) — 面向多站点的页面巡检与报告工具
-- [One-Stop Job](https://github.com/wowayou/one-stop-job) — 岗位搜集、适配度评估和入职规划；持续维护中，尚未稳定
-- [SimpleGitCMS](https://github.com/wowayou/simplegitcms) — Astro + Cloudflare Workers 的轻量 Git-based CMS，开发中
+| Project | What it shows |
+| --- | --- |
+| [Web Similarity Audit](https://github.com/wowayou/web-similarity-audit) | A deterministic CLI for finding duplicate and near-duplicate public web pages, with explainable reports and SSRF-aware limits. |
+| [Pi Provider Manager](https://github.com/wowayou/pi-provider-manager) | A local-first visual manager for Pi and Codex model providers, with native-config preservation and a loopback-only boundary. |
+| [SEO Operator Lab](https://github.com/wowayou/seo-operator-lab) | An interactive WordPress-first lab for practising SEO fixes, regression checks, and evidence-based debugging. |
 
-## English
+## 中文简介
 
-I build practical web tools around B2B SEO, English website delivery, AI agent workflows, and local-first software. My notes and project write-ups live at [eigentime.org](https://eigentime.org).
+我做英文 / B2B SEO、网站运营和轻量自动化工具，偏好把策略落到可复用的交付流程、可验证的证据和能长期维护的产品上。
 
 ## Links
 
