@@ -14,6 +14,24 @@ I work at the intersection of search visibility and implementation—turning aud
   <img src="github-metrics.svg" alt="GitHub activity" width="65%" />
 </p>
 
+<p align="center">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://raw.githubusercontent.com/wowayou/wowayou/output/github-contribution-grid-snake-dark.svg"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://raw.githubusercontent.com/wowayou/wowayou/output/github-contribution-grid-snake.svg"
+    />
+    <img
+      alt="GitHub contribution snake"
+      src="https://raw.githubusercontent.com/wowayou/wowayou/output/github-contribution-grid-snake.svg"
+      width="100%"
+    />
+  </picture>
+</p>
+
 ## What I'm working on
 
 - Technical and content SEO for English and B2B websites

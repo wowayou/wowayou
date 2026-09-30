@@ -1,0 +1,86 @@
+name: Generate contribution snake
+
+on:
+  schedule:
+    - cron: "17 0 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/snake.yml"
+
+permissions:
+  contents: write
+
+env:
+  # Snake colors
+  SNAKE_LIGHT: "#8250df"
+  SNAKE_DARK: "#c084fc"
+
+  # Use "transparent" for a native appearance in every GitHub theme.
+  # A fixed CSS color such as "#f6f8fa" or "#0d1117" is also supported.
+  BACKGROUND_LIGHT: "transparent"
+  BACKGROUND_DARK: "transparent"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Generate contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg?palette=github-light&color_snake=${{ env.SNAKE_LIGHT }}
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=${{ env.SNAKE_DARK }}
+
+      - name: Apply optional SVG background
+        env:
+          LIGHT_BG: ${{ env.BACKGROUND_LIGHT }}
+          DARK_BG: ${{ env.BACKGROUND_DARK }}
+        run: |
+          python - <<'PY'
+          from html import escape
+          import os
+          import re
+          from pathlib import Path
+
+          targets = (
+              ("github-contribution-grid-snake.svg", "LIGHT_BG"),
+              ("github-contribution-grid-snake-dark.svg", "DARK_BG"),
+          )
+
+          for filename, variable in targets:
+              background = os.environ[variable].strip()
+              if not background or background.lower() == "transparent":
+                  continue
+
+              path = Path("dist") / filename
+              svg = path.read_text(encoding="utf-8")
+              background_rect = (
+                  '<rect width="100%" height="100%" '
+                  f'fill="{escape(background, quote=True)}"/>'
+              )
+              svg, replacements = re.subn(
+                  r'(<svg\b[^>]*>)',
+                  lambda match: match.group(1) + background_rect,
+                  svg,
+                  count=1,
+              )
+              if replacements != 1:
+                  raise RuntimeError(f"Could not locate SVG root in {path}")
+
+              path.write_text(svg, encoding="utf-8")
+          PY
+
+      - name: Publish snake
+        uses: crazy-max/ghaction-github-pages@v5.0.0
+        with:
+          target_branch: output
+          build_dir: dist
+          jekyll: false
+          keep_history: false
+          commit_message: "chore: update contribution snake"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
