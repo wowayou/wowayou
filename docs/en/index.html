@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#111310"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f5f4ed"
+    />
+    <meta
+      name="description"
+      content="Personal portfolio of CG / wowayou. B2B SEO, web delivery, AI agent workflows, and local-first web tools."
+    />
+    <link rel="canonical" href="https://wowayou.github.io/wowayou/en/" />
+    <link
+      rel="alternate"
+      hreflang="zh-CN"
+      href="https://wowayou.github.io/wowayou/"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://wowayou.github.io/wowayou/en/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://wowayou.github.io/wowayou/"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://wowayou.github.io/wowayou/en/" />
+    <meta property="og:title" content="CG / wowayou — Ideas, made usable" />
+    <meta
+      property="og:description"
+      content="B2B SEO · AI agent workflows · local-first tools. Welcome to my terminal."
+    />
+    <title>CG / wowayou — Portfolio</title>
+    <link rel="icon" href="../icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#projects">Skip to projects</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="CG / wowayou home"
+          ><span class="brand-mark" aria-hidden="true">&gt;_</span
+          ><span>CG <span class="muted">/ wowayou</span></span></a
+        >
+        <nav aria-label="Primary">
+          <a href="#projects">Work<span aria-hidden="true"> ↗</span></a
+          ><a href="https://eigentime.org"
+            >Writing<span aria-hidden="true"> ↗</span></a
+          ><a href="https://github.com/wowayou"
+            >GitHub<span aria-hidden="true"> ↗</span></a
+          ><a href="../" hreflang="zh-CN" lang="zh-CN">中文</a>
+        </nav>
+        <button
+          class="theme-toggle js-only"
+          type="button"
+          aria-label="Switch to light theme"
+          title="Toggle theme"
+        >
+          <span aria-hidden="true">◐</span>
+        </button>
+      </header>
+
+      <main id="top">
+        <section class="intro" aria-labelledby="intro-title">
+          <div class="intro-main">
+            <p class="eyebrow">
+              <span class="status-dot" aria-hidden="true"></span> PERSONAL
+              WORKSPACE
+            </p>
+            <h1 id="intro-title">
+              Turning ideas into<br /><span class="accent"
+                >things that work</span
+              ><span class="heading-period">.</span>
+            </h1>
+            <p class="intro-description">
+              Hi, I'm CG, also known as wowayou.<br />I do B2B SEO, and I turn
+              everyday problems into small tools.
+            </p>
+            <div class="intro-actions">
+              <a class="primary-link" href="#projects"
+                >See my work <span aria-hidden="true">↓</span></a
+              ><a class="text-link" href="https://eigentime.org"
+                >Read my blog <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+          <aside class="profile-file" aria-label="Profile">
+            <div class="file-heading">
+              <span aria-hidden="true">⌑</span> ~/wowayou/profile.yml
+              <span class="file-label">READ ONLY</span>
+            </div>
+            <dl>
+              <div>
+                <dt>name</dt>
+                <dd>CG / wowayou</dd>
+              </div>
+              <div>
+                <dt>focus</dt>
+                <dd>B2B SEO &amp; web delivery</dd>
+              </div>
+              <div>
+                <dt>exploring</dt>
+                <dd>AI agent workflows</dd>
+              </div>
+              <div>
+                <dt>building</dt>
+                <dd>Local-first web tools</dd>
+              </div>
+              <div>
+                <dt>home</dt>
+                <dd><a href="https://eigentime.org">eigentime.org ↗</a></dd>
+              </div>
+            </dl>
+            <p class="file-comment"># Less repetition, more creation.</p>
+          </aside>
+        </section>
+
+        <section class="terminal js-only" aria-labelledby="terminal-title">
+          <div class="terminal-titlebar">
+            <div class="window-dots" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </div>
+            <h2 id="terminal-title">visitor@wowayou: ~</h2>
+            <span class="terminal-type">interactive shell</span>
+          </div>
+          <div class="terminal-layout">
+            <div class="terminal-main">
+              <div
+                id="terminal-output"
+                class="terminal-output"
+                role="region"
+                aria-label="Terminal output"
+                tabindex="0"
+              >
+                <div class="terminal-entry welcome">
+                  <p class="command-echo">
+                    <span>visitor</span><span class="muted">@</span>wowayou
+                    <span class="path">~</span> <span class="muted">$</span> cat
+                    welcome.txt
+                  </p>
+                  <pre
+                    class="wordmark"
+                    aria-label="WOWAYOU"
+                  > W O W A Y O U <span aria-hidden="true">▊</span></pre>
+                  <p>
+                    Welcome to my workbench — tools, experiments, and a few
+                    just-for-fun projects.
+                  </p>
+                  <p class="terminal-muted">
+                    Type
+                    <strong>help</strong>
+                    for commands, or use the shortcuts on the right. Projects
+                    are listed below too.
+                  </p>
+                </div>
+              </div>
+              <form id="terminal-form" class="terminal-form" autocomplete="off">
+                <label for="terminal-input"
+                  ><span class="prompt-user">visitor</span
+                  ><span class="muted">@</span>wowayou
+                  <span class="path">~</span> <span class="muted">$</span
+                  ><span class="sr-only"> Enter a command</span></label
+                >
+                <input
+                  id="terminal-input"
+                  name="command"
+                  type="text"
+                  maxlength="200"
+                  placeholder="type help to start…"
+                  spellcheck="false"
+                  autocapitalize="off"
+                  enterkeyhint="send"
+                  aria-describedby="terminal-hint"
+                />
+                <button type="submit" aria-label="Run command" title="Run command">
+                  ↵
+                </button>
+              </form>
+              <p class="terminal-hint" id="terminal-hint">
+                Tab completes <span>↑ ↓ history</span
+                ><span>Ctrl / ⌘ + L clears</span>
+              </p>
+            </div>
+            <aside class="terminal-sidebar" aria-label="Quick commands">
+              <p class="sidebar-heading">QUICK COMMANDS</p>
+              <button type="button" data-command="whoami">
+                <span>01</span> whoami <small>about me</small></button
+              ><button type="button" data-command="projects">
+                <span>02</span> projects <small>project list</small></button
+              ><button type="button" data-command="links">
+                <span>03</span> links <small>find me</small></button
+              ><button type="button" data-command="help">
+                <span>04</span> help <small>usage</small>
+              </button>
+              <p class="sidebar-note">
+                <span aria-hidden="true">↳</span>
+                Play around.<br />It's a web terminal.
+              </p>
+            </aside>
+          </div>
+          <div
+            id="terminal-status"
+            class="sr-only"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></div>
+        </section>
+
+        <section
+          id="projects"
+          class="projects-section"
+          aria-labelledby="projects-title"
+        >
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SELECTED WORK</p>
+              <h2 id="projects-title">
+                Selected projects<span class="section-count">/ 06</span>
+              </h2>
+            </div>
+            <p class="section-description">
+              Built from real problems, refined by daily use.
+            </p>
+          </div>
+          <div
+            class="project-filters js-only"
+            role="group"
+            aria-label="Filter projects by type"
+          >
+            <button type="button" data-filter="all" aria-pressed="true">
+              All <span>06</span></button
+            ><button type="button" data-filter="tool" aria-pressed="false">
+              Tools <span>03</span></button
+            ><button type="button" data-filter="workflow" aria-pressed="false">
+              Workflows <span>02</span></button
+            ><button type="button" data-filter="play" aria-pressed="false">
+              Just for fun <span>01</span>
+            </button>
+          </div>
+          <p id="filter-status" class="sr-only" role="status"></p>
+          <div class="project-grid">
+            <article
+              class="project-card"
+              data-category="tool"
+              data-slug="time-logger"
+              data-title="Eigentime"
+              data-summary="A local-first time tracker for where your day goes, with offline support, backup, and Markdown summaries."
+            >
+              <div class="card-top">
+                <span class="project-icon" aria-hidden="true">◷</span
+                ><span class="project-kind">LOCAL-FIRST TOOL</span
+                ><span class="project-number">01</span>
+              </div>
+              <h3>Eigentime <span>time tracker</span></h3>
+              <p>
+                Log where your day goes. Local storage, offline-ready, and a
+                timeline of your own life.
+              </p>
+              <div class="project-tags">
+                <span>JavaScript</span><span>PWA</span><span>Local-first</span>
+              </div>
+              <div class="card-links">
+                <a data-live href="https://time.eigentime.org/app/"
+                  >Open app ↗</a
+                ><a
+                  data-source
+                  href="https://github.com/wowayou/time-logger"
+                  aria-label="Eigentime source on GitHub"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+            <article
+              class="project-card"
+              data-category="tool"
+              data-slug="threadmap-panel"
+              data-title="ThreadMap"
+              data-summary="A read-only Discourse userscript for relay progress, duplicate questions and existing answers; LINUX DO compatibility pending manual verification."
+            >
+              <div class="card-top">
+                <span class="project-icon" aria-hidden="true">⌘</span
+                ><span class="project-kind">COMMUNITY TOOL</span
+                ><span class="project-number">02</span>
+              </div>
+              <h3>ThreadMap <span>thread navigator</span></h3>
+              <p>
+                A map for long Discourse threads: relay progress, duplicate
+                questions, existing answers — no more scrolling floors.
+              </p>
+              <div class="project-tags">
+                <span>TypeScript</span><span>Userscript</span
+                ><span>Read-only</span>
+              </div>
+              <div class="card-links">
+                <a
+                  data-live
+                  href="https://github.com/wowayou/threadmap-panel/releases"
+                  >Releases ↗</a
+                ><a
+                  data-source
+                  href="https://github.com/wowayou/threadmap-panel"
+                  aria-label="ThreadMap source on GitHub"
+                  >Source ↗</a
+                >
+              </div>
+              <p class="project-note">LINUX DO compatibility pending verification</p>
+            </article>
+            <article
+              class="project-card"
+              data-category="workflow"
+              data-slug="seo-operator-lab"
+              data-title="SEO Operator Lab"
+              data-summary="A WordPress SEO troubleshooting lab: practise fixes, verification and regression checks hands-on."
+            >
+              <div class="card-top">
+                <span class="project-icon" aria-hidden="true">&gt;_</span
+                ><span class="project-kind">INTERACTIVE LAB</span
+                ><span class="project-number">03</span>
+              </div>
+              <h3>SEO Operator Lab</h3>
+              <p>
+                Practise SEO troubleshooting in a real, running WordPress. Fix
+                things hands-on, then verify with evidence.
+              </p>
+              <div class="project-tags">
+                <span>TypeScript</span><span>WordPress</span
+                ><span>Technical SEO</span>
+              </div>
+              <div class="card-links">
+                <a data-live href="https://seolab.eigentime.org/"
+                  >Enter the lab ↗</a
+                ><a
+                  data-source
+                  href="https://github.com/wowayou/seo-operator-lab"
+                  aria-label="SEO Operator Lab source on GitHub"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+            <article
+              class="project-card"
+              data-category="workflow"
+              data-slug="pi-provider-manager"
+              data-title="Pi Provider Manager"
+              data-summary="Manage model providers and native configs for Pi, Codex CLI and Claude Code locally; frozen as a personal tool."
+            >
+              <div class="card-top">
+                <span class="project-icon" aria-hidden="true">⚙</span
+                ><span class="project-kind">AGENT WORKFLOW</span
+                ><span class="project-number">04</span>
+              </div>
+              <h3>Pi Provider Manager</h3>
+              <p>
+                Manage model providers for Pi, Codex CLI and Claude Code locally,
+                editing each tool's native config directly.
+              </p>
+              <div class="project-tags">
+                <span>JavaScript</span><span>AI Agent</span
+                ><span>Local config</span>
+              </div>
+              <div class="card-links">
+                <a
+                  data-live
+                  href="https://github.com/wowayou/pi-provider-manager/releases/latest"
+                  >Releases ↗</a
+                ><a
+                  data-source
+                  href="https://github.com/wowayou/pi-provider-manager"
+                  aria-label="Pi Provider Manager source on GitHub"
+                  >Source ↗</a
+                >
+              </div>
+              <p class="project-note">Personal tool · fixes &amp; compatibility only</p>
+            </article>
+            <article
+              class="project-card"
+              data-category="tool"
+              data-slug="quiet-journal-template"
+              data-title="Quiet Journal"
+              data-summary="A quiet Hugo life-blog template with mobile posting and photo metadata cleanup; no third-party requests for visitors."
+            >
+              <div class="card-top">
+                <span class="project-icon" aria-hidden="true">▤</span
+                ><span class="project-kind">PERSONAL PUBLISHING</span
+                ><span class="project-number">05</span>
+              </div>
+              <h3>Quiet Journal <span>write in quiet</span></h3>
+              <p>
+                A quiet Hugo blog template for life writing. Mobile posting,
+                photo metadata cleanup — attention stays on words and life.
+              </p>
+              <div class="project-tags">
+                <span>Hugo</span><span>Sveltia CMS</span
+                ><span>Blog template</span>
+              </div>
+              <div class="card-links">
+                <a
+                  data-live
+                  href="https://github.com/wowayou/quiet-journal-template#用这个模板建站"
+                  >Use template ↗</a
+                ><a
+                  data-source
+                  href="https://github.com/wowayou/quiet-journal-template"
+                  aria-label="Quiet Journal source on GitHub"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+            <article
+              class="project-card"
+              data-category="play"
+              data-slug="city-lights"
+              data-title="City Lights"
+              data-summary="A browser puzzle game: rotate wires to light every home, with daily puzzles, levels and replay."
+            >
+              <div class="card-top">
+                <span class="project-icon" aria-hidden="true">✳</span
+                ><span class="project-kind">JUST FOR FUN</span
+                ><span class="project-number">06</span>
+              </div>
+              <h3>City Lights <span>万家灯火</span></h3>
+              <p>
+                Rotate the wires, light every home. A daily little puzzle to
+                give a busy brain a different channel.
+              </p>
+              <div class="project-tags">
+                <span>TypeScript</span><span>Canvas</span
+                ><span>Puzzle game</span>
+              </div>
+              <div class="card-links">
+                <a data-live href="https://wowayou.github.io/city-lights/"
+                  >Light the city ↗</a
+                ><a
+                  data-source
+                  href="https://github.com/wowayou/city-lights"
+                  aria-label="City Lights source on GitHub"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+          </div>
+          <a
+            class="all-projects"
+            href="https://github.com/wowayou?tab=repositories"
+            >More experiments live on GitHub <span aria-hidden="true">↗</span></a
+          >
+        </section>
+
+        <section class="contact-section" aria-labelledby="contact-title">
+          <div>
+            <p class="eyebrow">KEEP IN TOUCH</p>
+            <h2 id="contact-title">Have an interesting idea? Let's talk.</h2>
+            <p>SEO, websites, tools — or whatever you're tinkering with.</p>
+          </div>
+          <a class="primary-link" href="mailto:contact@eigentime.org"
+            >Email me <span aria-hidden="true">↗</span></a
+          >
+        </section>
+      </main>
+      <footer class="site-footer">
+        <p>
+          <span class="footer-prompt" aria-hidden="true">&gt;_</span> CG /
+          wowayou <span class="muted">· powered by curiosity</span>
+        </p>
+        <a href="https://github.com/wowayou/wowayou">view source ↗</a
+        ><a href="#top">Back to top ↑</a>
+      </footer>
+    </div>
+  </body>
+</html>

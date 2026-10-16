@@ -1,7 +1,67 @@
 "use strict";
 
 (() => {
+  // UI strings live here, keyed by locale; project content is read from the
+  // localized project cards in each page, so there is no second data copy.
+  const STRINGS = {
+    zh: {
+      usage: (text) => `用法：${text}`,
+      help: "whoami          关于我\nprojects        列出精选作品\nlinks           博客、GitHub 与邮箱\nopen <项目名>   显示项目入口，例如 open city-lights\ntheme           切换深色 / 浅色\nclear           清空终端\nhistory         查看本次访问的命令历史",
+      helpMeta:
+        "Tab 补全命令或项目名；↑ ↓ 翻历史；Ctrl / ⌘ + L 清屏。\n这是网页里的模拟终端，只支持上面的命令。",
+      whoami:
+        "CG / wowayou\nB2B SEO、英文网站交付与 AI Agent 工作流。\n构建本地优先的 Web 工具，把重复的工作变成可以复用的流程。",
+      whoamiLink: "文章与项目笔记 · eigentime.org",
+      linksList: [
+        ["博客 · eigentime.org", "https://eigentime.org"],
+        ["GitHub · wowayou", "https://github.com/wowayou"],
+        ["邮箱 · contact@eigentime.org", "mailto:contact@eigentime.org"],
+      ],
+      openUsage: "open <项目名>，如 open city-lights；projects 可查看项目名",
+      openProject: "打开项目",
+      viewSource: "查看源码",
+      projectNotFound: (name) =>
+        `找不到项目：${name}。输入 projects 查看目录。`,
+      themeSwitched: (theme) => `已切换到${theme === "dark" ? "深" : "浅"}色主题。`,
+      themeLabel: (theme) => `切换到${theme === "dark" ? "浅" : "深"}色主题`,
+      cleared: "终端已清空。",
+      unknown: (command) =>
+        `找不到命令：${command}。输入 help 查看支持的命令。`,
+      filterStatus: (count) => `显示 ${count} 个项目。`,
+    },
+    en: {
+      usage: (text) => `Usage: ${text}`,
+      help: "whoami          About me\nprojects        List selected projects\nlinks           Blog, GitHub and email\nopen <project>  Show project links, e.g. open city-lights\ntheme           Toggle dark / light\nclear           Clear the terminal\nhistory         Command history for this visit",
+      helpMeta:
+        "Tab completes commands and project names; ↑ ↓ browses history; Ctrl / ⌘ + L clears.\nThis is a simulated web terminal — only the commands above exist.",
+      whoami:
+        "CG / wowayou\nB2B SEO, web delivery and AI agent workflows.\nBuilding local-first web tools that turn repetitive work into reusable flows.",
+      whoamiLink: "Notes and project write-ups · eigentime.org",
+      linksList: [
+        ["Blog · eigentime.org", "https://eigentime.org"],
+        ["GitHub · wowayou", "https://github.com/wowayou"],
+        ["Email · contact@eigentime.org", "mailto:contact@eigentime.org"],
+      ],
+      openUsage:
+        "open <project>, e.g. open city-lights; run projects to list names",
+      openProject: "Open project",
+      viewSource: "View source",
+      projectNotFound: (name) =>
+        `Project not found: ${name}. Run projects to see the list.`,
+      themeSwitched: (theme) => `Switched to the ${theme} theme.`,
+      themeLabel: (theme) =>
+        `Switch to ${theme === "dark" ? "light" : "dark"} theme`,
+      cleared: "Terminal cleared.",
+      unknown: (command) =>
+        `Unknown command: ${command}. Type help for supported commands.`,
+      filterStatus: (count) =>
+        `Showing ${count} project${count === 1 ? "" : "s"}.`,
+    },
+  };
+
   const root = document.documentElement;
+  const locale = root.lang.toLowerCase().startsWith("zh") ? "zh" : "en";
+  const T = STRINGS[locale];
   const output = document.querySelector("#terminal-output");
   const input = document.querySelector("#terminal-input");
   const form = document.querySelector("#terminal-form");
@@ -30,30 +90,64 @@
   let historyIndex = 0;
   let draft = "";
 
+  // Theme: data-theme="auto" in the markup follows the system via CSS alone
+  // (no flash, works without JS). An explicit choice overrides and persists.
+  const THEME_KEY = "wowayou.portfolio.theme";
+  const THEME_COLORS = { dark: "#111310", light: "#f5f4ed" };
+  const themeMetas = [...document.querySelectorAll('meta[name="theme-color"]')];
+  const systemDark = matchMedia("(prefers-color-scheme: dark)");
+  const coarsePointer = matchMedia("(pointer: coarse)");
+
+  const effectiveTheme = () =>
+    root.dataset.theme === "auto"
+      ? systemDark.matches
+        ? "dark"
+        : "light"
+      : root.dataset.theme;
+
+  function paintThemeButton() {
+    themeButton.setAttribute("aria-label", T.themeLabel(effectiveTheme()));
+  }
+
   function setTheme(theme) {
     root.dataset.theme = theme;
-    themeButton.setAttribute(
-      "aria-label",
-      `切换到${theme === "dark" ? "浅" : "深"}色主题`,
-    );
-    document.querySelector('meta[name="theme-color"]').content =
-      theme === "dark" ? "#111310" : "#f5f4ed";
+    themeMetas.forEach((meta) => {
+      meta.content = THEME_COLORS[theme];
+    });
     try {
-      localStorage.setItem("wowayou.portfolio.theme", theme);
+      localStorage.setItem(THEME_KEY, theme);
     } catch {
       /* Theme still works for this visit. */
     }
+    paintThemeButton();
+  }
+
+  function setAutoTheme() {
+    root.dataset.theme = "auto";
+    // In auto mode the media attributes on the meta tags do the work;
+    // rewriting content here only covers browsers that ignore them.
+    themeMetas.forEach((meta) => {
+      meta.content = meta.media.includes("light")
+        ? THEME_COLORS.light
+        : THEME_COLORS.dark;
+    });
+    paintThemeButton();
   }
 
   try {
-    const saved = localStorage.getItem("wowayou.portfolio.theme");
+    const saved = localStorage.getItem(THEME_KEY);
     if (saved === "light" || saved === "dark") setTheme(saved);
+    else setAutoTheme();
   } catch {
-    /* Storage is optional; default to the authored dark theme. */
+    /* Storage is optional; the system preference still applies. */
+    setAutoTheme();
   }
+  systemDark.addEventListener("change", () => {
+    if (root.dataset.theme === "auto") paintThemeButton();
+  });
 
   const toggleTheme = () =>
-    setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+    setTheme(effectiveTheme() === "dark" ? "light" : "dark");
   themeButton.addEventListener("click", toggleTheme);
 
   function line(parent, text, className) {
@@ -85,7 +179,7 @@
     const entry = document.createElement("div");
     entry.className = "terminal-entry";
     line(entry, `visitor@wowayou ~ $ ${commandLine}`, "command-echo");
-    const usage = (text) => line(entry, `用法：${text}`, "terminal-muted");
+    const usage = (text) => line(entry, T.usage(text), "terminal-muted");
 
     switch (command) {
       case "help":
@@ -93,26 +187,16 @@
           usage("help");
           break;
         }
-        line(
-          entry,
-          "whoami          关于我\nprojects        列出精选作品\nlinks           博客、GitHub 与邮箱\nopen <项目名>   显示项目入口，例如 open time-logger\ntheme           切换深色 / 浅色\nclear           清空终端\nhistory         查看本次访问的命令历史",
-        );
-        line(
-          entry,
-          "Tab 补全命令或项目名；↑ ↓ 翻历史；Ctrl / ⌘ + L 清屏。\n这是网页里的模拟终端，只支持上面的命令。",
-          "terminal-muted",
-        );
+        line(entry, T.help);
+        line(entry, T.helpMeta, "terminal-muted");
         break;
       case "whoami":
         if (args.length) {
           usage("whoami");
           break;
         }
-        line(
-          entry,
-          "CG / wowayou\nB2B SEO、英文网站交付与 AI Agent 工作流。\n构建本地优先的 Web 工具，把重复的工作变成可以复用的流程。",
-        );
-        link(entry, "文章与项目笔记 · eigentime.org", "https://eigentime.org");
+        line(entry, T.whoami);
+        link(entry, T.whoamiLink, "https://eigentime.org");
         break;
       case "projects":
         if (args.length) {
@@ -129,31 +213,21 @@
           usage("links");
           break;
         }
-        link(entry, "博客 · eigentime.org", "https://eigentime.org");
-        link(entry, "GitHub · wowayou", "https://github.com/wowayou");
-        link(
-          entry,
-          "邮箱 · contact@eigentime.org",
-          "mailto:contact@eigentime.org",
-        );
+        T.linksList.forEach(([label, url]) => link(entry, label, url));
         break;
       case "open": {
         if (args.length !== 1) {
-          usage("open <项目名>，如 open city-lights；projects 可查看项目名");
+          usage(T.openUsage);
           break;
         }
         const project = projects.find((item) => item.slug === args[0]);
         if (!project) {
-          line(
-            entry,
-            `找不到项目：${args[0]}。输入 projects 查看目录。`,
-            "terminal-muted",
-          );
+          line(entry, T.projectNotFound(args[0]), "terminal-muted");
           break;
         }
         line(entry, `${project.title} — ${project.summary}`);
-        link(entry, "打开项目", project.url);
-        link(entry, "查看源码", project.source);
+        link(entry, T.openProject, project.url);
+        link(entry, T.viewSource, project.source);
         break;
       }
       case "theme":
@@ -162,10 +236,7 @@
           break;
         }
         toggleTheme();
-        line(
-          entry,
-          `已切换到${root.dataset.theme === "dark" ? "深" : "浅"}色主题。`,
-        );
+        line(entry, T.themeSwitched(effectiveTheme()));
         break;
       case "clear":
         if (args.length) {
@@ -173,7 +244,7 @@
           break;
         }
         output.replaceChildren();
-        status.textContent = "终端已清空。";
+        status.textContent = T.cleared;
         return;
       case "history":
         if (args.length) {
@@ -190,15 +261,15 @@
         );
         break;
       default:
-        line(
-          entry,
-          `找不到命令：${command}。输入 help 查看支持的命令。`,
-          "terminal-muted",
-        );
+        line(entry, T.unknown(command), "terminal-muted");
     }
+    // Follow new output only when the visitor is already near the bottom, so
+    // reading earlier output is never interrupted.
+    const nearBottom =
+      output.scrollHeight - output.scrollTop - output.clientHeight < 80;
     output.append(entry);
     while (output.children.length > 30) output.firstElementChild.remove();
-    output.scrollTop = output.scrollHeight;
+    if (nearBottom) output.scrollTop = output.scrollHeight;
     status.textContent = entry.textContent;
   }
 
@@ -209,7 +280,10 @@
   document.querySelectorAll("[data-command]").forEach((button) => {
     button.addEventListener("click", () => {
       run(button.dataset.command);
-      input.focus({ preventScroll: true });
+      // Refocus the input unless the primary pointer is touch: there it would
+      // pop the on-screen keyboard over the output. Mouse and keyboard-only
+      // (pointer: none) setups keep typing flow.
+      if (!coarsePointer.matches) input.focus({ preventScroll: true });
     });
   });
 
@@ -262,8 +336,9 @@
       cards.forEach((card) => {
         card.hidden = category !== "all" && card.dataset.category !== category;
       });
-      document.querySelector("#filter-status").textContent =
-        `显示 ${cards.filter((card) => !card.hidden).length} 个项目。`;
+      document.querySelector("#filter-status").textContent = T.filterStatus(
+        cards.filter((card) => !card.hidden).length,
+      );
     });
   });
 

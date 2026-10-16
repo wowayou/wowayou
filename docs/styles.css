@@ -7,7 +7,7 @@
   --raised: #20241d;
   --text: #eeeee5;
   --muted: #a0a596;
-  --dim: #7e8676;
+  --dim: #8b9182;
   --border: #30362a;
   --accent: #edaf69;
   --green: #b2cc8a;
@@ -25,11 +25,27 @@
   --raised: #e5e7da;
   --text: #252b21;
   --muted: #5f6858;
-  --dim: #69715e;
+  --dim: #666e5a;
   --border: #d0d4c3;
   --accent: #935018;
   --green: #496b2b;
   --shadow: 0 22px 70px #2028100b;
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] {
+    color-scheme: light;
+    --bg: #f5f4ed;
+    --surface: #eeeee4;
+    --terminal: #fafaf5;
+    --raised: #e5e7da;
+    --text: #252b21;
+    --muted: #5f6858;
+    --dim: #666e5a;
+    --border: #d0d4c3;
+    --accent: #935018;
+    --green: #496b2b;
+    --shadow: 0 22px 70px #2028100b;
+  }
 }
 * {
   box-sizing: border-box;
@@ -227,7 +243,7 @@ h1 {
   color: var(--bg);
   padding: 11px 17px;
   border: 1px solid var(--accent);
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
@@ -243,7 +259,7 @@ h1 {
 .profile-file {
   font-family: var(--mono);
   border: 1px solid var(--border);
-  border-radius: 7px;
+  border-radius: 8px;
   background: var(--surface);
   font-size: 12px;
   transform: rotate(1deg);
@@ -352,12 +368,27 @@ h1 {
   overflow-wrap: anywhere;
   padding: 0 6px 6px 0;
 }
+.terminal-output::-webkit-scrollbar {
+  width: 8px;
+}
+.terminal-output::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+.terminal-output::-webkit-scrollbar-track {
+  background: transparent;
+}
 .terminal-entry + .terminal-entry {
   margin-top: 22px;
 }
 .terminal-entry p {
   margin: 6px 0;
   white-space: pre-wrap;
+}
+/* pre-wrap keeps \n in command output; the static welcome markup is
+   source-formatted, so its indentation must collapse normally. */
+.terminal-entry.welcome p {
+  white-space: normal;
 }
 .command-echo {
   color: var(--text);
@@ -414,6 +445,10 @@ h1 {
   caret-color: var(--accent);
   height: 32px;
 }
+.terminal-form input::placeholder {
+  color: var(--dim);
+  opacity: 1;
+}
 .terminal-form button {
   width: 32px;
   height: 32px;
@@ -427,7 +462,7 @@ h1 {
   display: flex;
   gap: 18px;
   color: var(--dim);
-  font: 9px/1.6 var(--mono);
+  font: 10px/1.6 var(--mono);
   margin: 9px 0 0;
 }
 .terminal-sidebar {
@@ -611,9 +646,9 @@ h2 {
   margin-bottom: 20px;
 }
 .project-tags span {
-  font: 9px/1.5 var(--mono);
+  font: 10px/1.5 var(--mono);
   background: var(--raised);
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 4px 6px;
   color: var(--muted);
 }
@@ -637,7 +672,7 @@ h2 {
   font-size: 10px;
 }
 .project-note {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--dim);
   margin: 10px 0 0;
 }
@@ -760,9 +795,17 @@ h2 {
   .site-header nav a:nth-child(2) {
     display: none;
   }
+  .site-header nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .project-filters button {
+    min-height: 44px;
+  }
   .theme-toggle {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
   }
   .intro {
     display: flex;
@@ -772,7 +815,7 @@ h2 {
     gap: 32px;
   }
   .eyebrow {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 1px;
     margin-bottom: 19px;
   }
@@ -835,7 +878,7 @@ h2 {
   }
   .terminal-hint {
     gap: 12px;
-    font-size: 8px;
+    font-size: 10px;
   }
   .terminal-sidebar {
     display: flex;
@@ -847,7 +890,7 @@ h2 {
   }
   .terminal-sidebar button {
     width: auto;
-    min-height: 36px;
+    min-height: 44px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -856,7 +899,7 @@ h2 {
     gap: 6px;
   }
   .terminal-sidebar button small {
-    font-size: 9px;
+    font-size: 10px;
     margin-left: 3px;
   }
   .terminal-sidebar button > span,
@@ -883,7 +926,7 @@ h2 {
     padding: 18px;
   }
   .project-kind {
-    font-size: 7px;
+    font-size: 8px;
     letter-spacing: 0.3px;
   }
   .card-top {
@@ -913,7 +956,7 @@ h2 {
     gap: 18px;
     padding: 22px 0;
     min-height: 100px;
-    font-size: 9px;
+    font-size: 10px;
   }
   .site-footer p {
     flex-basis: 100%;
@@ -987,5 +1030,47 @@ h2 {
   }
   .project-card:hover {
     transform: none;
+  }
+}
+@media print {
+  .site-header nav,
+  .theme-toggle,
+  .intro-actions,
+  .terminal,
+  .project-filters,
+  .site-footer {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #111;
+  }
+  .site-shell {
+    max-width: none;
+    padding: 0;
+  }
+  .intro {
+    display: block;
+    padding: 0 0 24px;
+  }
+  .profile-file {
+    transform: none;
+    margin-top: 24px;
+  }
+  .projects-section {
+    padding: 24px 0;
+  }
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project-card {
+    break-inside: avoid;
+  }
+  .card-links a[href^="http"]::after,
+  .all-projects[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9px;
+    color: #555;
+    word-break: break-all;
   }
 }

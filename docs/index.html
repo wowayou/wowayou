@@ -1,19 +1,46 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="auto">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" content="#111310" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#111310"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f5f4ed"
+    />
     <meta
       name="description"
       content="CG / wowayou 的个人作品集。B2B SEO、英文网站交付、AI Agent 工作流，以及本地优先的 Web 工具。"
+    />
+    <link rel="canonical" href="https://wowayou.github.io/wowayou/" />
+    <link
+      rel="alternate"
+      hreflang="zh-CN"
+      href="https://wowayou.github.io/wowayou/"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://wowayou.github.io/wowayou/en/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://wowayou.github.io/wowayou/"
     />
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
     />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:url" content="https://wowayou.github.io/wowayou/" />
     <meta property="og:title" content="CG / wowayou — 把想法做成能用的东西" />
     <meta
       property="og:description"
@@ -38,7 +65,7 @@
             >文字<span aria-hidden="true"> ↗</span></a
           ><a href="https://github.com/wowayou"
             >GitHub<span aria-hidden="true"> ↗</span></a
-          >
+          ><a href="./en/" hreflang="en" lang="en">EN</a>
         </nav>
         <button
           class="theme-toggle js-only"
@@ -153,6 +180,7 @@
                   name="command"
                   type="text"
                   maxlength="200"
+                  placeholder="输入 help 开始…"
                   spellcheck="false"
                   autocapitalize="off"
                   enterkeyhint="send"
@@ -214,11 +242,11 @@
             <button type="button" data-filter="all" aria-pressed="true">
               全部 <span>06</span></button
             ><button type="button" data-filter="tool" aria-pressed="false">
-              日常工具</button
+              日常工具 <span>03</span></button
             ><button type="button" data-filter="workflow" aria-pressed="false">
-              工作流与实验</button
+              工作流与实验 <span>02</span></button
             ><button type="button" data-filter="play" aria-pressed="false">
-              好玩的
+              好玩的 <span>01</span>
             </button>
           </div>
           <p id="filter-status" class="sr-only" role="status"></p>
