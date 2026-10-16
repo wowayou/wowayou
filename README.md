@@ -52,7 +52,7 @@ I work at the intersection of search visibility and implementation—turning aud
 
 ## Terminal portfolio
 
-A Chinese-first, terminal-style portfolio lives in [`docs/`](docs/index.html), with directly browsable project cards and an interactive shell. See [PORTFOLIO.md](PORTFOLIO.md) for local preview, editing, and GitHub Pages publishing instructions. It is prepared locally and not yet published.
+A Chinese-first, terminal-style portfolio lives in [`docs/`](docs/index.html), with directly browsable project cards and an interactive shell. The live site is [wowayou.github.io/wowayou](https://wowayou.github.io/wowayou/), published from the `feat/terminal-portfolio` branch so the profile README on `main` remains the personal showcase.
 
 ## Links
 

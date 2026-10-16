@@ -26,17 +26,15 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 
 ## GitHub Pages 发布
 
-当前版本已准备好静态文件；**尚未推送或启用 Pages**。
+当前版本已上线：<https://wowayou.github.io/wowayou/>。GitHub Pages 从 `feat/terminal-portfolio` 分支的 `/docs` 目录发布，个人主页仍由默认分支 `main` 的 README 提供。
 
-推荐在本仓库使用 GitHub Pages 的分支发布：
+当前线上配置：
 
-1. 审核并合并作品集分支到 `main`。
-2. 在仓库 **Settings → Pages → Build and deployment** 中选择 **Deploy from a branch**。
-3. 分支选择 `main`，目录选择 `/docs`，保存。
-4. 等待发布完成并确认 HTTPS 可访问。默认地址应为 <https://wowayou.github.io/wowayou/>，以 Pages 实际显示的地址为准。
-5. 将实际地址填入 LINUX DO 的「个人网站」，也可以加到根目录 README 的 Links。
+- 地址：<https://wowayou.github.io/wowayou/>
+- 发布分支：`feat/terminal-portfolio`
+- 发布目录：`/docs`
 
-站点使用相对资源路径，也可部署到其他静态托管服务的根目录或子目录。`docs/.nojekyll` 禁用 Jekyll 处理。使用 GitHub 分支发布，无需新增自定义 Actions 工作流或定时任务。仓库已有的 metrics / snake 工作流由原配置决定，不属于本作品集的发布流程。
+后续更新作品集时，提交到 `feat/terminal-portfolio` 分支，GitHub Pages 会自动重新构建。个人主页使用 `main` 分支的 README；是否把作品集链接加入主页，由你单独决定。若要在仓库设置中重新配置，选择 **Deploy from a branch**，分支选择 `feat/terminal-portfolio`，目录选择 `/docs`。
 
 GitHub 用户根站点 `https://wowayou.github.io/` 需要名为 `wowayou.github.io` 的仓库；本仓库名为 `wowayou`，默认是上述带 `/wowayou/` 的项目站点。不要为了作品集覆盖已有博客或迁移其他仓库。
 
