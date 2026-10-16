@@ -6,7 +6,7 @@
  * 运行：node tools/baseline.mjs
  *
  * 检查项：
- *   1. 必需文件存在；app.js 语法（node --check）。
+ *   1. 必需文件存在；app.js 与两个工具的语法（node --check）。
  *   2. 每个语言页面的 head 基线：lang、title、description、CSP、双 theme-color、
  *      canonical、hreflang（zh-CN / en / x-default）。
  *   3. 本地资源（src/href 相对路径）存在；页内锚点有对应 id。
@@ -49,11 +49,13 @@ const required = [
   "docs/.nojekyll",
 ];
 for (const rel of required) ok(existsSync(join(root, rel)), `文件存在 ${rel}`);
-try {
-  execFileSync(process.execPath, ["--check", join(docsDir, "app.js")]);
-  ok(true, "app.js 语法检查");
-} catch {
-  ok(false, "app.js 语法检查");
+for (const rel of ["docs/app.js", "tools/baseline.mjs", "tools/smoke.mjs"]) {
+  try {
+    execFileSync(process.execPath, ["--check", join(root, rel)]);
+    ok(true, `语法检查 ${rel}`);
+  } catch {
+    ok(false, `语法检查 ${rel}`);
+  }
 }
 
 const css = readFileSync(join(docsDir, "styles.css"), "utf8");
