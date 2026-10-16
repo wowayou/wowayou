@@ -50,6 +50,10 @@ I work at the intersection of search visibility and implementation—turning aud
 
 我做英文 / B2B SEO、网站运营和轻量自动化工具，偏好把策略落到可复用的交付流程、可验证的证据和能长期维护的产品上。
 
+## Terminal portfolio
+
+A Chinese-first, terminal-style portfolio lives in [`docs/`](docs/index.html), with directly browsable project cards and an interactive shell. See [PORTFOLIO.md](PORTFOLIO.md) for local preview, editing, and GitHub Pages publishing instructions. It is prepared locally and not yet published.
+
 ## Links
 
 - [Blog and project notes](https://eigentime.org)
